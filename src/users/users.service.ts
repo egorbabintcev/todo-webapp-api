@@ -9,8 +9,8 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async findOne(username): Promise<UserDocument> {
-    return await this.userModel.findOne({ username });
+  async findOne(searchParams): Promise<UserDocument> {
+    return await this.userModel.findOne(searchParams);
   }
 
   async create(createUserDto: CreateUserDto): Promise<UserDocument> {

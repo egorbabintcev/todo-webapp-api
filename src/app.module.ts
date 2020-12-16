@@ -12,6 +12,8 @@ import { UsersModule } from 'src/users/users.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('MONGOOSE_URI'),
+        useCreateIndex: true,
+        useNewUrlParser: true,
       }),
       inject: [ConfigService],
     }),
