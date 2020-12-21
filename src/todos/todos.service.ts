@@ -8,12 +8,12 @@ import { CreateTodoDto, UpdateTodoDto } from 'src/todos/dto/todo.dto';
 export class TodosService {
   constructor(@InjectModel(Todo.name) private todoModel: Model<TodoDocument>) {}
 
-  async findAll(): Promise<TodoDocument[]> {
-    return await this.todoModel.find();
+  async findAll(userId: string): Promise<TodoDocument[]> {
+    return await this.todoModel.find({ createdBy: userId });
   }
 
-  async findOne(id: string): Promise<TodoDocument> {
-    return await this.todoModel.findOne({ _id: id });
+  async findOne(id: string, userId: string): Promise<TodoDocument> {
+    return await this.todoModel.findOne({ _id: id, createdBy: userId });
   }
 
   async create(createTodoDto: CreateTodoDto): Promise<TodoDocument> {
@@ -21,11 +21,18 @@ export class TodosService {
     return await newTodo.save();
   }
 
-  async update(id: string, updateTodoDto: UpdateTodoDto): Promise<TodoDocument> {
-    return await this.todoModel.updateMany({ _id: id }, updateTodoDto);
+  async update(
+    id: string,
+    updateTodoDto: UpdateTodoDto,
+    userId: string,
+  ): Promise<TodoDocument> {
+    return await this.todoModel.updateMany(
+      { _id: id, createdBy: userId },
+      updateTodoDto,
+    );
   }
 
-  async delete(id: string): Promise<any> {
-    return await this.todoModel.deleteMany({ _id: id });
+  async delete(id: string, userId: string): Promise<any> {
+    return await this.todoModel.deleteMany({ _id: id, createdBy: userId });
   }
 }
