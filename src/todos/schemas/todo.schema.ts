@@ -9,7 +9,7 @@ export class Todo {
   title: string;
 
   @Prop({ default: false })
-  isChecked: boolean;
+  isCompleted: boolean;
 
   @Prop({ type: MongooseTypes.ObjectId, ref: 'User' })
   createdBy: string;

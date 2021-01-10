@@ -8,7 +8,7 @@ export class CreateTodoDto {
 
   @IsBoolean()
   @IsOptional()
-  isChecked: boolean;
+  isCompeleted: boolean;
 
   @IsNotEmpty()
   @IsString()
