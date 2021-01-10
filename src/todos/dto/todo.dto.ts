@@ -1,4 +1,10 @@
-import { IsBoolean, IsMongoId, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsMongoId,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { PartialType } from '@nestjs/mapped-types';
 
 export class CreateTodoDto {
@@ -8,7 +14,7 @@ export class CreateTodoDto {
 
   @IsBoolean()
   @IsOptional()
-  isCompeleted: boolean;
+  isCompleted: boolean;
 
   @IsNotEmpty()
   @IsString()
